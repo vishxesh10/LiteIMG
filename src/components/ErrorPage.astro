@@ -1,0 +1,23 @@
+---
+interface Props {
+  code: string;
+  title: string;
+  message: string;
+}
+
+const { code, title, message } = Astro.props;
+---
+
+<main class="flex min-h-screen flex-col bg-[#f7f7f5] text-[#111318]">
+  <header class="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+    <a href="/" class="flex items-center gap-3 text-sm font-bold tracking-[-0.02em]" aria-label="Image Size Reducer home"><img src="/favicon.svg" alt="" class="size-8 object-contain" /><span>Image Size Reducer</span></a>
+    <a href="/" class="text-xs font-semibold text-[#69707d] transition hover:text-[#155eef]">Back to tool</a>
+  </header>
+  <section class="mx-auto flex w-full max-w-[780px] flex-1 flex-col items-start px-5 pb-24 pt-24 sm:px-8 sm:pt-36">
+    <p class="font-display text-7xl font-semibold tracking-[-0.08em] text-[#155eef] sm:text-9xl">{code}</p>
+    <h1 class="mt-6 font-display text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">{title}</h1>
+    <p class="mt-5 max-w-[520px] text-base leading-7 text-[#69707d] sm:text-lg">{message}</p>
+    <a href="/" class="mt-8 rounded-[7px] bg-[#111318] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#2e333d]">Return to Image Size Reducer</a>
+  </section>
+  <footer class="w-full border-t border-[#dfe2e7]"><div class="mx-auto flex max-w-[1180px] flex-col gap-4 px-5 py-6 text-xs text-[#a4a9b3] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10"><span>Image Size Reducer</span><nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation"><a href="/about" class="transition hover:text-[#155eef]">About us</a><a href="/contact" class="transition hover:text-[#155eef]">Contact us</a><a href="/privacy-policy" class="transition hover:text-[#155eef]">Privacy policy</a><a href="/terms" class="transition hover:text-[#155eef]">Terms &amp; conditions</a></nav></div></footer>
+</main>

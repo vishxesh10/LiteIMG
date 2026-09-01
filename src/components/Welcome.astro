@@ -1,210 +1,90 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+<main class="min-h-screen overflow-hidden bg-[#f7f7f5] text-[#111318]">
+  <header class="relative mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+    <a href="/" class="flex items-center gap-3 text-sm font-bold tracking-[-0.02em]" aria-label="Image Size Reducer home"><img src="/favicon.svg" alt="" class="size-8 object-contain" /><span>Image Size Reducer</span></a>
+    <div class="flex items-center gap-4 text-xs font-medium text-[#69707d]"><button id="theme-toggle" type="button" class="grid size-8 place-items-center rounded-[7px] border border-[#dfe2e7] bg-white text-[#69707d] transition hover:border-[#155eef]" aria-label="Switch to dark mode" title="Switch to dark mode"><svg id="theme-icon" viewBox="0 0 20 20" fill="none" class="size-4" aria-hidden="true"><path d="M10 3v2m0 10v2M3 10h2m10 0h2M5.05 5.05l1.42 1.42m7.06 7.06 1.42 1.42M14.95 5.05l-1.42 1.42m-7.06 7.06-1.42 1.42M10 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg></button><span class="privacy-label flex items-center gap-2"><span class="size-1.5 rounded-full bg-[#36a269]"></span>Private by default</span></div>
+  </header>
+  <section class="relative mx-auto max-w-[1180px] px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:px-10 lg:pt-24">
+    <div class="mx-auto max-w-[760px] text-center"><p class="mb-5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#155eef]">Free image toolkit</p><h1 class="font-display text-[clamp(2.8rem,7vw,5.9rem)] font-semibold leading-[0.98] tracking-[-0.065em]">Make it fit.<br /><span class="text-[#a4a9b3]">Keep the quality.</span></h1><p class="mx-auto mt-7 max-w-[520px] text-base leading-7 text-[#69707d] sm:text-lg">Resize, compress, and convert images in one fast workspace. No accounts, watermarks, or uploads.</p></div>
+    <div id="app" class="mx-auto mt-12 max-w-[960px] sm:mt-16">
+      <section id="upload-view" class="overflow-hidden rounded-[14px] border border-[#dfe2e7] bg-white shadow-[0_20px_70px_rgba(25,35,55,0.08)]">
+        <div class="grid lg:grid-cols-[1.08fr_0.92fr]">
+          <div class="border-b border-[#e8eaee] p-5 sm:p-8 lg:border-b-0 lg:border-r lg:p-10"><div id="drop-zone" class="group flex min-h-[280px] cursor-pointer flex-col items-center justify-center rounded-[10px] border border-dashed border-[#bfc5cf] bg-[#fbfbfa] px-6 text-center transition hover:border-[#155eef] hover:bg-[#f8faff]"><input id="file-input" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp" multiple /><div class="mb-5 grid size-14 place-items-center rounded-full border border-[#dfe2e7] bg-white text-[#155eef] shadow-sm transition group-hover:-translate-y-1"><svg viewBox="0 0 24 24" fill="none" class="size-6" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg></div><h2 class="font-display text-xl font-semibold tracking-[-0.03em]">Drop images here</h2><p class="mt-2 text-sm text-[#69707d]">or <span class="font-semibold text-[#155eef]">choose files</span> from your device</p><p class="mt-7 text-[11px] font-medium uppercase tracking-[0.12em] text-[#a4a9b3]">JPG · PNG · WEBP &nbsp; / &nbsp; up to 20 files, 25 MB each</p></div><div id="file-list" class="mt-4 hidden space-y-2"></div><p id="file-error" class="mt-3 hidden text-center text-xs font-medium text-[#c24141]"></p></div>
+          <div class="bg-[#fcfcfb] p-5 sm:p-8 lg:p-10"><div class="mb-7 flex items-center justify-between"><p class="text-xs font-bold uppercase tracking-[0.16em] text-[#69707d]">01 <span class="ml-2 text-[#c8ccd3]">/</span> Output settings</p><span class="text-xs text-[#a4a9b3]">Free forever</span></div><h2 class="font-display text-2xl font-semibold tracking-[-0.04em]">Set your ideal output.</h2><div class="mt-6"><p class="mb-2 text-xs font-semibold text-[#69707d]">Target file size</p><div id="presets" class="grid grid-cols-2 gap-2"><button type="button" data-size="100000" class="size-option rounded-[7px] border border-[#155eef] bg-[#eef4ff] px-3 py-3 text-sm font-semibold text-[#155eef]">100 KB</button><button type="button" data-size="500000" class="size-option rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold text-[#404652] transition hover:border-[#155eef]">500 KB</button><button type="button" data-size="1000000" class="size-option rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold text-[#404652] transition hover:border-[#155eef]">1 MB</button><button type="button" data-size="2000000" class="size-option rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold text-[#404652] transition hover:border-[#155eef]">2 MB</button></div><label class="mt-3 flex items-center gap-2 rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-2.5 focus-within:border-[#155eef] focus-within:ring-2 focus-within:ring-[#155eef]/10"><span class="flex-1 text-sm text-[#69707d]">Custom target</span><input id="custom-size" type="number" min="1" placeholder="e.g. 750" class="w-20 bg-transparent text-right text-sm font-semibold outline-none placeholder:text-[#c8ccd3]" /><select id="custom-unit" class="border-l border-[#e8eaee] bg-transparent pl-2 text-xs font-bold text-[#69707d] outline-none"><option value="1000">KB</option><option value="1000000">MB</option></select></label></div><div class="mt-5 grid grid-cols-2 gap-3"><label><span class="mb-2 block text-xs font-semibold text-[#69707d]">Output format</span><select id="output-format" class="w-full rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold outline-none focus:border-[#155eef]"><option value="image/jpeg">JPG</option><option value="image/webp">WebP</option><option value="image/png">PNG</option></select></label><label><span class="mb-2 block text-xs font-semibold text-[#69707d]">Max width</span><select id="max-width" class="w-full rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold outline-none focus:border-[#155eef]"><option value="0">Original</option><option value="2400">2400 px</option><option value="1920">1920 px</option><option value="1200">1200 px</option><option value="800">800 px</option></select></label></div><label class="mt-5 block"><div class="mb-2 flex justify-between text-xs font-semibold text-[#69707d]"><span>Quality floor</span><output id="quality-value">82%</output></div><input id="quality" type="range" min="40" max="100" value="82" class="h-1.5 w-full cursor-pointer accent-[#155eef]" /></label><div class="mt-8"><button id="reduce-button" type="button" disabled class="flex w-full items-center justify-center gap-2 rounded-[7px] bg-[#111318] px-5 py-3.5 text-sm font-bold text-white shadow-[0_4px_10px_rgba(17,19,24,0.14)] transition hover:bg-[#2e333d] disabled:cursor-not-allowed disabled:bg-[#dfe2e7] disabled:text-[#9aa1ad]"><span>Reduce images</span><svg viewBox="0 0 20 20" fill="none" class="size-4" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></button><p class="mt-3 text-center text-[11px] text-[#a4a9b3]">Everything happens in your browser.</p></div></div>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#e8eaee] bg-[#fbfbfa] px-5 py-4 text-xs text-[#69707d] sm:px-10"><span class="font-semibold text-[#111318]">Why this is better</span><span>Exact size targets</span><span>Batch processing</span><span>JPG, PNG, WebP output</span><span>No daily limits</span></div>
+      </section>
+      <section id="result-view" class="hidden overflow-hidden rounded-[14px] border border-[#dfe2e7] bg-white shadow-[0_20px_70px_rgba(25,35,55,0.08)]"><div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#e8eaee] p-5 sm:p-7"><div><p class="text-xs font-bold uppercase tracking-[0.16em] text-[#36a269]">02 / Complete</p><h2 id="result-heading" class="mt-2 font-display text-2xl font-semibold tracking-[-0.04em]">Your images are ready.</h2></div><button id="start-over" type="button" class="rounded-[7px] border border-[#dfe2e7] px-4 py-2 text-sm font-semibold text-[#404652] transition hover:border-[#111318]">Start over</button></div><div id="results" class="divide-y divide-[#e8eaee]"></div><div class="flex flex-col items-center justify-between gap-4 border-t border-[#e8eaee] p-5 sm:flex-row sm:p-7"><p class="max-w-[440px] text-xs leading-5 text-[#69707d]">Processed locally on your device. Nothing was uploaded or stored.</p><button id="download-all" type="button" class="flex w-full items-center justify-center gap-2 rounded-[7px] bg-[#155eef] px-5 py-3.5 text-sm font-bold text-white shadow-[0_4px_10px_rgba(21,94,239,0.2)] transition hover:bg-[#0f4dcc] sm:w-auto"><svg viewBox="0 0 20 20" fill="none" class="size-4" aria-hidden="true"><path d="M10 3v10m0 0 4-4m-4 4-4-4M4 17h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg><span id="download-label">Download all</span></button></div></section>
+      <section class="mx-auto mt-20 max-w-[780px] border-t border-[#dfe2e7] pt-12 text-[#404652] sm:mt-28 sm:pt-16">
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#155eef]">The simple way to optimize images</p>
+        <h2 class="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-[#111318] sm:text-4xl">A free image size reducer built for real-world file limits.</h2>
+        <div class="mt-8 space-y-6 text-[15px] leading-7 text-[#69707d]">
+          <p>Large image files are frustrating when you need to send an email, upload a profile photo, meet a website limit, or share a picture quickly. Image Size Reducer gives you a direct answer: choose your target, add an image, and get a smaller file in seconds. Instead of guessing with a quality slider, you can reduce image size to under 100 KB, 500 KB, 1 MB, 2 MB, or any custom limit. The result is made for the exact constraint you are trying to meet.</p>
+          <p>This image size reducer works with the formats people use every day, including JPG, JPEG, PNG, and WebP. You can also use it as an image size converter when you need a JPG, PNG, or WebP output. Converting format can make a meaningful difference for photographs, product images, screenshots, and graphics. The output format, target size, quality floor, and maximum width are all available in one focused workspace, so you can change image size without opening several different tools.</p>
+          <p>Image quality matters as much as file size. Our automatic compression process searches for the best quality that stays under your chosen target whenever the image can achieve it. If a very small target requires more than compression alone, the tool gently reduces the dimensions while preserving the original aspect ratio. This gives you the best practical balance between a smaller file and image quality that still looks good on screens. You can also set a maximum width when you want an easy resize for a website, marketplace, social profile, or email attachment.</p>
+          <p>Need to process more than one file? Add up to 20 images at once and apply the same settings to the whole batch. Each result includes the original size, reduced size, savings percentage, and output dimensions, making it easy to compare the results before downloading. Download one image individually or download the complete batch as a ZIP file. Batch processing stays free, with no account, watermark, subscription, or daily limit getting in the way.</p>
+          <p>Privacy is built into the way Image Size Reducer works. Your images are processed locally in your browser using standard web capabilities, so they do not need to be sent to a server or stored in an account. That makes this a useful free image reducer for personal photos, private documents, work files, and client assets. When you close the page, your original files remain on your device and the tool has nothing waiting for you online.</p>
+          <p>Whether you call it an image size reducer, an image size converter, or an easy resize tool, the goal is the same: make an image fit where you need it without unnecessary steps. Upload a file, select the limit or format you need, and download the finished image. Image Size Reducer is designed to keep that workflow fast, clear, and free while helping you preserve the image quality that matters.</p>
+        </div>
+      </section>
+      <section class="mx-auto mt-20 max-w-[780px] border-t border-[#dfe2e7] pt-12 sm:mt-28 sm:pt-16" aria-labelledby="faq-heading">
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#155eef]">Helpful answers</p>
+        <h2 id="faq-heading" class="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-[#111318] sm:text-4xl">Image size reducer FAQ</h2>
+        <div class="mt-8 divide-y divide-[#dfe2e7] border-y border-[#dfe2e7]">
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>Will resizing reduce image quality?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Resizing reduces the number of pixels, so some fine detail can be lost when making an image smaller. Image Size Reducer keeps the original aspect ratio and uses the largest practical dimensions and quality for your target, helping images stay crisp.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>How do I reduce image size to 50KB online for free?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Upload your image, enter 50 in the Custom target field, select KB, and choose Reduce images. The tool adjusts quality and dimensions when necessary to get as close to 50KB as possible while staying under your target.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>What image formats can I compress?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">You can upload JPG, JPEG, PNG, and WebP images. Choose JPG, PNG, or WebP as the output format before processing.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>Does compressing an image reduce quality?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Lossy compression can reduce some visual detail, especially at very small file sizes. The compressor searches for the highest quality that meets your target and lets you set a quality floor for more control.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>What is the difference between resizing, compressing, and cropping?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Resizing changes pixel dimensions, compressing reduces file size in KB or MB, and cropping removes part of the image. This tool supports resizing and compression without changing your image framing.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>How do I compress an image online?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Drop an image or choose one from your device, select a target or output setting, and click Reduce images. Preview the result and download it immediately without installing software.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>How do I resize an image to a specific KB size?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Enter the required number in the Custom target field, or choose 100 KB, 500 KB, 1 MB, or 2 MB. The tool combines compression with dimension reduction if needed.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>What is lossless image compression?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Lossless compression reduces file size without changing pixel data. It is best for graphics where every pixel must remain identical, while JPG or WebP may achieve smaller files for photographs.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>Is this image size reducer free?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Yes. Image Size Reducer is free to use with batch processing, no account, no subscription, no watermark, and no daily credit limit.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>How do I change image dimensions in pixels?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Choose a maximum width such as 2400, 1920, 1200, or 800 pixels. Height is calculated from the original aspect ratio so the image is not stretched.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>Is the image compressor free and private?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Yes. Processing happens locally in your browser, so images are not uploaded to or stored on a server by this tool.</p></details>
+          <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-base font-semibold text-[#111318] sm:text-lg"><span>How do I resize an image without losing quality?</span><span class="text-xl font-normal text-[#a4a9b3] transition group-open:rotate-45">+</span></summary><p class="mt-3 max-w-[680px] text-sm leading-6 text-[#69707d]">Use the largest maximum width that meets your needs, keep the quality floor high, and avoid unnecessary resizing. Preserving the aspect ratio also prevents distortion.</p></details>
+        </div>
+      </section>
+    </div>
+  </section>
+  <footer class="relative mx-auto flex max-w-[1180px] flex-col gap-4 border-t border-[#dfe2e7] px-5 py-6 text-xs text-[#a4a9b3] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10"><span>Image Size Reducer</span><nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation"><a href="/about" class="transition hover:text-[#155eef]">About us</a><a href="/contact" class="transition hover:text-[#155eef]">Contact us</a><a href="/privacy-policy" class="transition hover:text-[#155eef]">Privacy policy</a><a href="/terms" class="transition hover:text-[#155eef]">Terms &amp; conditions</a></nav></footer>
+</main>
 
-	<a href="https://astro.build/blog/astro-7/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 7.0?</h2>
-		<p>
-			Rust-powered compiler, advanced routing, AI agent support, and more! Click to explore Astro
-			7.0's new features.
-		</p>
-	</a>
-</div>
-
+<script>
+  // @ts-nocheck
+  import { zipSync } from 'fflate';
+  const $ = (selector) => document.querySelector(selector); const fileInput = $('#file-input'); const dropZone = $('#drop-zone'); const reduceButton = $('#reduce-button'); const uploadView = $('#upload-view'); const resultView = $('#result-view'); const fileList = $('#file-list'); const fileError = $('#file-error'); let selectedFiles = []; let targetBytes = 100000; let results = []; let originalUrls = [];
+  const formatBytes = (bytes) => bytes < 1000000 ? `${Math.max(1, Math.round(bytes / 1000))} KB` : `${(bytes / 1000000).toFixed(2)} MB`; const validType = (file) => ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+  const setTarget = (bytes, button) => { targetBytes = bytes; document.querySelectorAll('.size-option').forEach((item) => item.className = 'size-option rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-3 text-sm font-semibold text-[#404652] transition hover:border-[#155eef]'); if (button) button.className = 'size-option rounded-[7px] border border-[#155eef] bg-[#eef4ff] px-3 py-3 text-sm font-semibold text-[#155eef]'; };
+  const showFiles = () => { fileList.innerHTML = selectedFiles.map((file) => `<div class="flex items-center justify-between rounded-[7px] border border-[#e8eaee] bg-white px-3 py-2 text-xs"><span class="max-w-[70%] truncate font-semibold">${file.name}</span><span class="text-[#69707d]">${formatBytes(file.size)}</span></div>`).join(''); fileList.classList.toggle('hidden', selectedFiles.length === 0); reduceButton.disabled = selectedFiles.length === 0; };
+  const acceptFiles = (files) => { const incoming = [...files].filter((file) => validType(file) && file.size <= 25000000); if (!incoming.length) { fileError.textContent = 'Choose JPG, PNG, or WebP images under 25 MB each.'; fileError.classList.remove('hidden'); return; } selectedFiles = [...selectedFiles, ...incoming].slice(0, 20); fileError.classList.add('hidden'); dropZone.classList.add('border-[#36a269]', 'bg-[#f4fcf7]'); dropZone.querySelector('h2').textContent = `${selectedFiles.length} image${selectedFiles.length === 1 ? '' : 's'} selected`; showFiles(); };
+  fileInput.addEventListener('change', (event) => acceptFiles(event.target.files)); dropZone.addEventListener('click', () => fileInput.click()); ['dragenter', 'dragover'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.add('border-[#155eef]', 'bg-[#f8faff]'); })); ['dragleave', 'drop'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.remove('border-[#155eef]', 'bg-[#f8faff]'); })); dropZone.addEventListener('drop', (event) => acceptFiles(event.dataTransfer.files)); document.querySelectorAll('.size-option').forEach((button) => button.addEventListener('click', () => setTarget(Number(button.dataset.size), button))); $('#custom-size').addEventListener('input', () => { if ($('#custom-size').value) { document.querySelectorAll('.size-option').forEach((item) => item.classList.remove('border-[#155eef]', 'bg-[#eef4ff]', 'text-[#155eef]')); targetBytes = Number($('#custom-size').value) * Number($('#custom-unit').value); } }); $('#custom-unit').addEventListener('change', () => { if ($('#custom-size').value) targetBytes = Number($('#custom-size').value) * Number($('#custom-unit').value); }); $('#quality').addEventListener('input', () => { $('#quality-value').textContent = `${$('#quality').value}%`; });
+  const canvasBlob = (canvas, type, quality) => new Promise((resolve) => canvas.toBlob(resolve, type, quality));
+  const loadImage = (file) => new Promise((resolve, reject) => { const image = new Image(); image.onload = () => resolve(image); image.onerror = reject; image.src = URL.createObjectURL(file); });
+  const compressImage = async (file) => { const image = await loadImage(file); const maxWidth = Number($('#max-width').value); let width = image.naturalWidth; let height = image.naturalHeight; if (maxWidth && width > maxWidth) { height = Math.round(height * maxWidth / width); width = maxWidth; } const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height; const context = canvas.getContext('2d'); context.drawImage(image, 0, 0, width, height); const type = $('#output-format').value; const floor = Number($('#quality').value) / 100; let low = 0.04; let high = 1; let best; for (let attempt = 0; attempt < 10; attempt += 1) { const quality = (low + high) / 2; const candidate = await canvasBlob(canvas, type, quality); if (candidate.size <= targetBytes) { best = candidate; low = quality; } else high = quality; } if (!best) best = await canvasBlob(canvas, type, floor); return { blob: best, width, height, source: file }; };
+  reduceButton.addEventListener('click', async () => { reduceButton.disabled = true; reduceButton.querySelector('span').textContent = 'Processing...'; results = []; try { for (const file of selectedFiles) results.push(await compressImage(file)); const outputType = $('#output-format').value; const extension = outputType === 'image/png' ? 'png' : outputType === 'image/webp' ? 'webp' : 'jpg'; $('#results').innerHTML = results.map((result, index) => { const originalUrl = URL.createObjectURL(result.source); originalUrls.push(originalUrl); const reducedUrl = URL.createObjectURL(result.blob); result.url = reducedUrl; return `<article class="grid gap-5 bg-[#f7f7f5] p-5 sm:grid-cols-[180px_1fr] sm:p-7"><div class="preview-frame"><img src="${reducedUrl}" alt="Reduced preview of ${result.source.name}" /></div><div class="flex flex-col justify-between gap-5"><div><p class="truncate text-sm font-bold">${result.source.name}</p><div class="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 text-xs"><span class="text-[#69707d]">Before <strong class="ml-1 text-[#111318]">${formatBytes(result.source.size)}</strong></span><span class="text-[#69707d]">After <strong class="ml-1 text-[#155eef]">${formatBytes(result.blob.size)}</strong></span><span class="text-[#69707d]">Saved <strong class="ml-1 text-[#36a269]">${Math.max(0, Math.round((1 - result.blob.size / result.source.size) * 100))}%</strong></span><span class="text-[#69707d]">Size <strong class="ml-1 text-[#111318]">${result.width} x ${result.height}</strong></span></div></div><a href="${reducedUrl}" download="${result.source.name.replace(/\.[^/.]+$/, '')}-reduced.${extension}" class="w-fit rounded-[7px] border border-[#dfe2e7] bg-white px-3 py-2 text-xs font-bold text-[#404652] hover:border-[#155eef]">Download this image</a></div></article>`; }).join(''); $('#result-heading').textContent = `${results.length} image${results.length === 1 ? '' : 's'} ready.`; $('#download-label').textContent = results.length === 1 ? 'Download image' : 'Download all as ZIP'; uploadView.classList.add('hidden'); resultView.classList.remove('hidden'); resultView.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch { fileError.textContent = 'Something went wrong while reading an image. Please try another file.'; fileError.classList.remove('hidden'); } finally { reduceButton.disabled = false; reduceButton.querySelector('span').textContent = 'Reduce images'; } });
+  $('#download-all').addEventListener('click', async () => { if (results.length === 1) { const link = document.createElement('a'); link.href = results[0].url; link.download = `${results[0].source.name.replace(/\.[^/.]+$/, '')}-reduced`; link.click(); return; } const files = {}; const extension = $('#output-format').value === 'image/png' ? 'png' : $('#output-format').value === 'image/webp' ? 'webp' : 'jpg'; for (const result of results) files[`${result.source.name.replace(/\.[^/.]+$/, '')}-reduced.${extension}`] = new Uint8Array(await result.blob.arrayBuffer()); const archive = zipSync(files); const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([archive], { type: 'application/zip' })); link.download = 'reduced-images.zip'; link.click(); });
+  $('#start-over').addEventListener('click', () => { originalUrls.forEach((url) => URL.revokeObjectURL(url)); results.forEach((result) => URL.revokeObjectURL(result.url)); selectedFiles = []; results = []; fileInput.value = ''; fileList.innerHTML = ''; fileList.classList.add('hidden'); reduceButton.disabled = true; dropZone.querySelector('h2').textContent = 'Drop images here'; dropZone.classList.remove('border-[#36a269]', 'bg-[#f4fcf7]'); resultView.classList.add('hidden'); uploadView.classList.remove('hidden'); });
+  const themeToggle = $('#theme-toggle'); const themeIcon = $('#theme-icon'); const setTheme = (isDark) => { document.documentElement.classList.toggle('dark-mode', isDark); themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode'); themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode'); themeIcon.innerHTML = isDark ? '<path d="M15.5 12.5A5.5 5.5 0 0 1 7.5 4a5.5 5.5 0 1 0 8 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />' : '<path d="M10 3v2m0 10v2M3 10h2m10 0h2M5.05 5.05l1.42 1.42m7.06 7.06 1.42 1.42M14.95 5.05l-1.42 1.42m-7.06 7.06-1.42 1.42M10 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />'; }; setTheme(localStorage.getItem('image-reducer-theme') === 'dark'); themeToggle.addEventListener('click', () => { const isDark = !document.documentElement.classList.contains('dark-mode'); setTheme(isDark); localStorage.setItem('image-reducer-theme', isDark ? 'dark' : 'light'); });
+</script>
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
-
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
-
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
-
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
-
-	#links {
-		display: flex;
-		gap: 16px;
-	}
-
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
-
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-	}
+  .preview-frame { aspect-ratio: 4 / 3; overflow: hidden; display: grid; place-items: center; border-radius: 8px; border: 1px solid #dfe2e7; background-color: #eceeeb; background-image: linear-gradient(45deg, #e3e5e2 25%, transparent 25%), linear-gradient(-45deg, #e3e5e2 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e3e5e2 75%), linear-gradient(-45deg, transparent 75%, #e3e5e2 75%); background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0; }
+  .preview-frame img { width: 100%; height: 100%; object-fit: contain; }
+  @media (prefers-reduced-motion: no-preference) { #app { animation: rise 0.7s ease-out both; } @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } }
+  @media (max-width: 640px) {
+    header { padding-top: 1rem; padding-bottom: 1rem; }
+    header > a { min-width: 0; }
+    header > a span:last-child { white-space: nowrap; font-size: 0.75rem; }
+    .privacy-label { display: none; }
+    section.relative { padding-top: 3.5rem; }
+    h1 { font-size: clamp(2.45rem, 12vw, 3.3rem); }
+    section.relative > div:first-child p:last-child { font-size: 0.9rem; line-height: 1.5rem; }
+    #app { margin-top: 2.5rem; }
+    #upload-view > div:first-child, #upload-view > div:last-child { padding: 1.25rem; }
+    #drop-zone { min-height: 250px; }
+    #presets button { padding-top: 0.7rem; padding-bottom: 0.7rem; }
+    footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
 </style>

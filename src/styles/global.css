@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #111318;
+  background: #f7f7f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 320px; }
+
+button, input { font: inherit; }
+
+::selection { color: #fff; background: #155eef; }
+
+.dark-mode main { background-color: #0d1016 !important; color: #f3f4f6; }
+.dark-mode [class*="bg-[#f7f7f5]"], .dark-mode [class*="bg-[#fcfcfb]"], .dark-mode [class*="bg-[#fbfbfa]"], .dark-mode [class*="bg-white"] { background-color: #151a23 !important; }
+.dark-mode [class*="bg-[#eef4ff]"] { background-color: #172b55 !important; }
+.dark-mode [class*="text-[#111318]"] { color: #f3f4f6 !important; }
+.dark-mode [class*="text-[#404652]"], .dark-mode [class*="text-[#69707d]"] { color: #aeb7c5 !important; }
+.dark-mode [class*="text-[#a4a9b3]"] { color: #697586 !important; }
+.dark-mode [class*="border-[#dfe2e7]"], .dark-mode [class*="border-[#e8eaee]"], .dark-mode [class*="border-[#bfc5cf]"] { border-color: #2c3442 !important; }
+.dark-mode .preview-frame { background-color: #202733; background-image: linear-gradient(45deg, #2c3442 25%, transparent 25%), linear-gradient(-45deg, #2c3442 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2c3442 75%), linear-gradient(-45deg, transparent 75%, #2c3442 75%); }
+.dark-mode #theme-toggle { background-color: #151a23; color: #f3f4f6; }

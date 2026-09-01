@@ -1,0 +1,8 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Something Went Wrong | Image Size Reducer" description="Image Size Reducer encountered an unexpected error.">
+  <ErrorPage code="500" title="Something went wrong." message="The page could not be loaded right now. Please try again, or return to the image reducer to continue." />
+</Layout>

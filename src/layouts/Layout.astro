@@ -1,23 +1,73 @@
+---
+import '../styles/global.css';
+
+const canonicalUrl = Astro.url.href;
+const { title = 'Image Size Reducer | Hit your target size', description = 'Image Size Reducer is a free image size reducer and image size converter. Reduce image size, resize, and convert JPG, PNG, and WebP files privately in your browser.' } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="LiteImg" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="Image Size Reducer, reduce image size, image size converter, change image size, image size, image quality same, free image reducer, easy resize" />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Image Size Reducer" />
+		<meta property="og:title" content="Image Size Reducer | Reduce image size for free" />
+		<meta property="og:description" content="Reduce image size to an exact target, resize dimensions, and convert formats for free. Everything runs privately in your browser." />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={`${Astro.url.origin}/web-app-manifest-512x512.png`} />
+		<meta property="og:image:alt" content="Image Size Reducer logo" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Image Size Reducer | Free online image reducer" />
+		<meta name="twitter:description" content="Reduce image size, resize dimensions, and convert JPG, PNG, and WebP files privately in your browser." />
+		<meta name="twitter:image" content={`${Astro.url.origin}/web-app-manifest-512x512.png`} />
+		<script type="application/ld+json" set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'WebApplication',
+			name: 'Image Size Reducer',
+			url: canonicalUrl,
+			description: 'A free browser-based image size reducer, resizer, and converter.',
+			applicationCategory: 'MultimediaApplication',
+			operatingSystem: 'Any',
+			 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+		})} />
+		<script type="application/ld+json" set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'FAQPage',
+			mainEntity: [
+				{ '@type': 'Question', name: 'Will resizing reduce image quality?', acceptedAnswer: { '@type': 'Answer', text: 'Resizing reduces the number of pixels in an image, so some fine detail can be lost when making an image smaller. Image Size Reducer preserves the aspect ratio and uses the largest practical dimensions and quality for your target, helping images stay crisp and clear.' } },
+				{ '@type': 'Question', name: 'How do I reduce image size to 50KB online for free?', acceptedAnswer: { '@type': 'Answer', text: 'Upload your image, enter 50 in the custom target field, select KB, and choose Reduce images. The browser-based compressor adjusts quality and, when necessary, dimensions to create an image as close to 50KB as possible while staying under the target.' } },
+				{ '@type': 'Question', name: 'What image formats can I compress?', acceptedAnswer: { '@type': 'Answer', text: 'You can upload JPG, JPEG, PNG, and WebP images. You can choose JPG, PNG, or WebP as the output format before processing.' } },
+				{ '@type': 'Question', name: 'Does compressing an image reduce quality?', acceptedAnswer: { '@type': 'Answer', text: 'Lossy compression can reduce some visual detail, especially at very small file sizes. Image Size Reducer searches for the highest quality that meets your target and lets you set a quality floor for more control.' } },
+				{ '@type': 'Question', name: 'What is the difference between resizing, compressing, and cropping an image?', acceptedAnswer: { '@type': 'Answer', text: 'Resizing changes an image\'s pixel dimensions, compressing reduces the file size in KB or MB, and cropping removes part of the image to change its framing. Image Size Reducer supports resizing and compression; it does not crop your image.' } },
+				{ '@type': 'Question', name: 'How do I compress an image online?', acceptedAnswer: { '@type': 'Answer', text: 'Choose or drop an image, select a target file size or output setting, and click Reduce images. The result can be previewed and downloaded immediately without installing software or creating an account.' } },
+				{ '@type': 'Question', name: 'How do I resize an image to a specific KB size?', acceptedAnswer: { '@type': 'Answer', text: 'Use the Custom target field to enter the required number of KB, or choose a preset such as 100 KB, 500 KB, 1 MB, or 2 MB. The tool automatically combines compression with dimension reduction if needed.' } },
+				{ '@type': 'Question', name: 'What is lossless image compression?', acceptedAnswer: { '@type': 'Answer', text: 'Lossless compression reduces file size without changing pixel data. It is useful for graphics and images where every pixel must remain identical, although it may not reach very small targets. For aggressive targets, a JPG or WebP output may provide a smaller file.' } },
+				{ '@type': 'Question', name: 'Is this image size reducer free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Image Size Reducer is free to use, supports batch processing, and does not require an account, subscription, watermark, or daily credit limit.' } },
+				{ '@type': 'Question', name: 'How do I change image dimensions in pixels?', acceptedAnswer: { '@type': 'Answer', text: 'Choose a maximum width such as 2400, 1920, 1200, or 800 pixels. The height is calculated automatically from the original aspect ratio so the image does not look stretched or distorted.' } },
+				{ '@type': 'Question', name: 'Is the image compressor free and private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The image compressor is free, and processing happens locally in your browser. Images are not uploaded to or stored on a server by this tool.' } },
+				{ '@type': 'Question', name: 'How do I resize an image without losing quality?', acceptedAnswer: { '@type': 'Answer', text: 'Use the largest maximum width that meets your needs, choose a suitable output format, and keep the quality floor high. Some detail loss is unavoidable when reducing dimensions, but preserving the aspect ratio and avoiding unnecessary resizing helps retain visual quality.' } },
+			],
+		})} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+		<title>{title}</title>
+		<script is:inline>
+			if (localStorage.getItem('image-reducer-theme') === 'dark') document.documentElement.classList.add('dark-mode');
+		</script>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

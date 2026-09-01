@@ -1,0 +1,38 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+}
+
+const { eyebrow, title, intro } = Astro.props;
+---
+
+<main class="min-h-screen bg-[#f7f7f5] text-[#111318]">
+  <header class="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+    <a href="/" class="flex items-center gap-3 text-sm font-bold tracking-[-0.02em]" aria-label="Image Size Reducer home"><img src="/favicon.svg" alt="" class="size-8 object-contain" /><span>Image Size Reducer</span></a>
+    <div class="flex items-center gap-4"><button id="theme-toggle" type="button" class="grid size-8 place-items-center rounded-[7px] border border-[#dfe2e7] bg-white text-[#69707d] transition hover:border-[#155eef]" aria-label="Switch to dark mode" title="Switch to dark mode"><svg id="theme-icon" viewBox="0 0 20 20" fill="none" class="size-4" aria-hidden="true"><path d="M10 3v2m0 10v2M3 10h2m10 0h2M5.05 5.05l1.42 1.42m7.06 7.06 1.42 1.42M14.95 5.05l-1.42 1.42m-7.06 7.06-1.42 1.42M10 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg></button><a href="/" class="text-xs font-semibold text-[#69707d] transition hover:text-[#155eef]">Back to tool</a></div>
+  </header>
+  <article class="mx-auto max-w-[780px] px-5 pb-20 pt-14 sm:px-8 sm:pt-20">
+    <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#155eef]">{eyebrow}</p>
+    <h1 class="mt-4 font-display text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">{title}</h1>
+    <p class="mt-6 max-w-[650px] text-base leading-7 text-[#69707d] sm:text-lg">{intro}</p>
+    <div class="mt-12 space-y-10 border-t border-[#dfe2e7] pt-10 text-[15px] leading-7 text-[#69707d]"><slot /></div>
+  </article>
+  <footer class="mx-auto flex max-w-[1180px] flex-col gap-4 border-t border-[#dfe2e7] px-5 py-6 text-xs text-[#a4a9b3] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10"><span>Image Size Reducer</span><nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation"><a href="/about" class="transition hover:text-[#155eef]">About us</a><a href="/contact" class="transition hover:text-[#155eef]">Contact us</a><a href="/privacy-policy" class="transition hover:text-[#155eef]">Privacy policy</a><a href="/terms" class="transition hover:text-[#155eef]">Terms &amp; conditions</a></nav></footer>
+</main>
+
+<script>
+  // @ts-nocheck
+  const themeToggle = document.querySelector('#theme-toggle');
+  const themeIcon = document.querySelector('#theme-icon');
+  const isDark = localStorage.getItem('image-reducer-theme') === 'dark';
+  const updateTheme = (dark) => {
+    document.documentElement.classList.toggle('dark-mode', dark);
+    themeToggle?.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle?.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    if (themeIcon) themeIcon.innerHTML = dark ? '<path d="M15.5 12.5A5.5 5.5 0 0 1 7.5 4a5.5 5.5 0 1 0 8 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />' : '<path d="M10 3v2m0 10v2M3 10h2m10 0h2M5.05 5.05l1.42 1.42m7.06 7.06 1.42 1.42M14.95 5.05l-1.42 1.42m-7.06 7.06-1.42 1.42M10 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />';
+  };
+  updateTheme(isDark);
+  themeToggle?.addEventListener('click', () => { const dark = !document.documentElement.classList.contains('dark-mode'); updateTheme(dark); localStorage.setItem('image-reducer-theme', dark ? 'dark' : 'light'); });
+</script>
